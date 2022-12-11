@@ -5,8 +5,28 @@ import {
   Typography,
   Box
 } from '@mui/material';
+import { useCallback, useEffect, useState } from 'react';
+import { authApi } from '../api/authApi';
+
 
 const Home: NextPage = () => {
+  const [apiTest, setApiTest] = useState('');
+
+  const getAPIExample = useCallback(async () => {
+    try {
+      const response = await authApi.hello();
+      const data = await response.json();
+      console.log(data)
+      setApiTest(data.Hello);
+    } catch (err) {
+      console.log(err)
+    }
+  }, [])
+
+  useEffect(()=>{
+    getAPIExample();
+  }, [getAPIExample])
+
   return (
     <Container maxWidth='lg'>
       <Box
@@ -22,7 +42,7 @@ const Home: NextPage = () => {
           Material UI v5 with Next.js in TypeScript
         </Typography>
         <Typography component='h2' color='secondary'>
-          Success!
+          API test: {apiTest} (If the message is 'World', API connection is success)
         </Typography>
       </Box>
     </Container>
