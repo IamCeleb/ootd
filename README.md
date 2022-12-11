@@ -13,7 +13,7 @@
 * Backend
   ```bash
   cd backend
-  pip install > requirements.txt # 처음 실행 시 설치
+  pip install -r requirements.txt # 처음 실행 시 설치
   uvicorn app.main:app --reload --host=0.0.0.0 --port=8000
   ```
   * 실행 후 `http://[host]:[port]/[route설정]`에 접속하여 값 확인
